@@ -114,6 +114,13 @@ export default function Home() {
       </AnimatePresence>
       
       <TabBar activeTab={activeTab} onTabChange={setActiveTab} />
+      
+      {/* 底部作者信息 */}
+      <div className="fixed bottom-0 left-0 right-0 z-30 pb-2 pt-1 bg-gradient-to-t from-white via-white/80 to-transparent pointer-events-none">
+        <p className="text-center text-[10px] text-neutral-400">
+          作者 Mario Huang · 联系方式 13394060795
+        </p>
+      </div>
     </main>
   );
 }
