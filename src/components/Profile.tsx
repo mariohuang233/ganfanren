@@ -217,6 +217,13 @@ export default function Profile() {
           <p className="text-xs text-neutral-400">干饭雷达 v1.0.0</p>
           <p className="text-xs text-neutral-300 mt-1">让每一顿饭都不踩雷</p>
         </div>
+
+        {/* 作者信息 */}
+        <div className="text-center pb-8">
+          <p className="text-[10px] text-neutral-400">
+            作者 Mario Huang · 联系方式 13394060795
+          </p>
+        </div>
       </div>
     </div>
   );
