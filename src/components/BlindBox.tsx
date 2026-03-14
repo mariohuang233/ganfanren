@@ -52,12 +52,20 @@ function MysteryBox({ isRolling, onClick }: { isRolling: boolean; onClick: () =>
           <span className="text-neutral-400 text-xs">点击开启</span>
         </div>
         
-        {/* 装饰性丝带 - 更细更淡 */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-4 h-full pointer-events-none">
-          <div className="w-full h-full bg-gradient-to-b from-primary-200/30 to-orange-200/30" />
+        {/* 礼物丝带 */}
+        {/* 垂直丝带 */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-6 h-full pointer-events-none overflow-hidden rounded-3xl">
+          <div className="w-full h-full bg-gradient-to-b from-primary-400 via-primary-500 to-primary-600 shadow-inner" />
         </div>
-        <div className="absolute top-1/2 left-0 -translate-y-1/2 w-full h-4 pointer-events-none">
-          <div className="w-full h-full bg-gradient-to-r from-primary-200/30 to-orange-200/30" />
+        {/* 水平丝带 */}
+        <div className="absolute top-1/2 left-0 -translate-y-1/2 w-full h-6 pointer-events-none overflow-hidden rounded-3xl">
+          <div className="w-full h-full bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600 shadow-inner" />
+        </div>
+        {/* 中心蝴蝶结 */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 pointer-events-none">
+          <div className="w-full h-full bg-gradient-to-br from-primary-500 to-orange-500 rounded-full shadow-lg flex items-center justify-center">
+            <div className="w-6 h-6 bg-white/30 rounded-full" />
+          </div>
         </div>
       </motion.div>
     </motion.button>
