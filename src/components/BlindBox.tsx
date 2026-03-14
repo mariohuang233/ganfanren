@@ -52,12 +52,12 @@ function MysteryBox({ isRolling, onClick }: { isRolling: boolean; onClick: () =>
           <span className="text-neutral-400 text-xs">点击开启</span>
         </div>
         
-        {/* 装饰性丝带 */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-8 h-full">
-          <div className="w-full h-full bg-gradient-to-b from-primary-200/50 to-orange-200/50" />
+        {/* 装饰性丝带 - 更细更淡 */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-4 h-full pointer-events-none">
+          <div className="w-full h-full bg-gradient-to-b from-primary-200/30 to-orange-200/30" />
         </div>
-        <div className="absolute top-1/2 left-0 -translate-y-1/2 w-full h-8">
-          <div className="w-full h-full bg-gradient-to-r from-primary-200/50 to-orange-200/50" />
+        <div className="absolute top-1/2 left-0 -translate-y-1/2 w-full h-4 pointer-events-none">
+          <div className="w-full h-full bg-gradient-to-r from-primary-200/30 to-orange-200/30" />
         </div>
       </motion.div>
     </motion.button>
