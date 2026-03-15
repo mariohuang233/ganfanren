@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Sparkles } from "lucide-react";
 import TabBar from "@/components/TabBar";
@@ -15,8 +15,33 @@ const pageVariants = {
   exit: { opacity: 0, x: -20 },
 };
 
+// 发送访问日志
+function sendAccessLog(pathname: string) {
+  if (typeof window === 'undefined') return;
+  
+  fetch('/api/log', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      pathname,
+      userAgent: navigator.userAgent,
+      referer: document.referrer,
+    }),
+  }).catch(() => {});
+}
+
 export default function Home() {
   const [activeTab, setActiveTab] = useState("radar");
+
+  // 页面加载时发送访问日志
+  useEffect(() => {
+    sendAccessLog(window.location.pathname);
+  }, []);
+
+  // 切换 tab 时发送日志
+  useEffect(() => {
+    sendAccessLog(`/${activeTab}`);
+  }, [activeTab]);
 
   const renderContent = () => {
     switch (activeTab) {

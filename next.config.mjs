@@ -5,6 +5,10 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
+  // 启用 instrumentation
+  experimental: {
+    instrumentationHook: true,
+  },
 };
 
 export default nextConfig;

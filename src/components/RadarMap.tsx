@@ -313,7 +313,7 @@ function RestaurantDrawer({
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         onClick={onClose}
-        className="absolute inset-0 bg-neutral-900/20 backdrop-blur-sm z-30"
+        className="absolute inset-0 bg-neutral-900/20 backdrop-blur-sm z-[55]"
       />
       
       <motion.div
@@ -321,16 +321,16 @@ function RestaurantDrawer({
         animate={{ y: 0 }}
         exit={{ y: "100%" }}
         transition={{ type: "spring", damping: 25, stiffness: 300 }}
-        className="absolute bottom-0 left-0 right-0 bg-white rounded-t-[2rem] z-40 max-h-[85vh] overflow-y-auto shadow-2xl"
+        className="absolute bottom-0 left-0 right-0 bg-white rounded-t-[2rem] z-[60] max-h-[85vh] overflow-y-auto shadow-2xl"
       >
         <div className="w-full flex justify-center pt-4 pb-3 sticky top-0 bg-white z-10">
           <div className="w-10 h-1 bg-neutral-200 rounded-full" />
         </div>
 
-        <div className="px-6 pb-8">
+        <div className="px-6 pb-24">
           <button
             onClick={onClose}
-            className="absolute top-4 right-5 w-9 h-9 bg-neutral-100 rounded-full flex items-center justify-center hover:bg-neutral-200 transition-colors"
+            className="absolute top-4 right-5 w-9 h-9 bg-neutral-100 rounded-full flex items-center justify-center hover:bg-neutral-200 transition-colors z-20"
           >
             <X size={16} className="text-neutral-500" />
           </button>
