@@ -1,9 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { Search, MapPin, Star, Navigation, X, ThumbsUp, ThumbsDown, Sparkles, Camera, Send, List } from "lucide-react";
+import { Search, MapPin, Star, Navigation, X, ThumbsUp, ThumbsDown, Sparkles, Camera, Send, List, Clock, Phone, ChevronRight, Flame } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { restaurants, filterTags, reviews, Restaurant } from "@/data/mock";
+import { restaurants, filterTags, reviews, Restaurant, MenuCategory } from "@/data/mock";
 import OptimizedRestaurantCard from "./OptimizedRestaurantCard";
 
 export default function RadarMap() {
@@ -274,6 +274,130 @@ function SimulatedMap({
   );
 }
 
+// 官方图片画廊组件
+function ImageGallery({ images, restaurantName }: { images: string[]; restaurantName: string }) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  return (
+    <div className="mb-5">
+      <h4 className="text-sm font-semibold text-neutral-900 mb-3 flex items-center gap-2">
+        <span className="w-1 h-4 bg-primary-500 rounded-full" />
+        官方实拍
+      </h4>
+      <div className="relative">
+        {/* 主图 */}
+        <div className="relative h-48 rounded-2xl overflow-hidden">
+          <motion.img
+            key={currentIndex}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.3 }}
+            src={images[currentIndex]}
+            alt={`${restaurantName} - ${currentIndex + 1}`}
+            className="w-full h-full object-cover"
+          />
+          {/* 图片计数器 */}
+          <div className="absolute bottom-3 right-3 bg-black/50 backdrop-blur-sm text-white text-xs px-2 py-1 rounded-full">
+            {currentIndex + 1} / {images.length}
+          </div>
+        </div>
+        
+        {/* 缩略图导航 */}
+        {images.length > 1 && (
+          <div className="flex gap-2 mt-2 overflow-x-auto pb-1 no-scrollbar">
+            {images.map((img, idx) => (
+              <button
+                key={idx}
+                onClick={() => setCurrentIndex(idx)}
+                className={`flex-shrink-0 w-16 h-16 rounded-xl overflow-hidden border-2 transition-all ${
+                  idx === currentIndex ? 'border-primary-500' : 'border-transparent'
+                }`}
+              >
+                <img src={img} alt={`${restaurantName} - ${idx + 1}`} className="w-full h-full object-cover" />
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+// 菜单展示组件
+function MenuSection({ menu }: { menu: MenuCategory[] }) {
+  const [expandedCategory, setExpandedCategory] = useState<string>(menu[0]?.id || '');
+
+  return (
+    <div className="mb-5">
+      <h4 className="text-sm font-semibold text-neutral-900 mb-3 flex items-center gap-2">
+        <span className="w-1 h-4 bg-primary-500 rounded-full" />
+        菜单
+      </h4>
+      
+      {/* 分类标签 */}
+      <div className="flex gap-2 overflow-x-auto pb-2 mb-3 no-scrollbar">
+        {menu.map((category) => (
+          <button
+            key={category.id}
+            onClick={() => setExpandedCategory(category.id)}
+            className={`flex-shrink-0 px-4 py-2 rounded-full text-sm font-medium transition-all ${
+              expandedCategory === category.id
+                ? 'bg-primary-500 text-white'
+                : 'bg-neutral-100 text-neutral-600'
+            }`}
+          >
+            {category.name}
+          </button>
+        ))}
+      </div>
+
+      {/* 菜单项 */}
+      <AnimatePresence mode="wait">
+        {menu.map((category) => (
+          expandedCategory === category.id && (
+            <motion.div
+              key={category.id}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.2 }}
+              className="space-y-3"
+            >
+              {category.items.map((item) => (
+                <div
+                  key={item.id}
+                  className="flex items-start justify-between p-3 bg-neutral-50 rounded-xl"
+                >
+                  <div className="flex-1">
+                    <div className="flex items-center gap-2">
+                      <span className="font-medium text-neutral-900">{item.name}</span>
+                      {item.isPopular && (
+                        <span className="flex items-center gap-0.5 text-[10px] text-orange-500 bg-orange-50 px-1.5 py-0.5 rounded">
+                          <Flame size={10} />
+                          招牌
+                        </span>
+                      )}
+                      {item.isSpicy && (
+                        <span className="text-[10px] text-red-500 bg-red-50 px-1.5 py-0.5 rounded">
+                          辣
+                        </span>
+                      )}
+                    </div>
+                    {item.description && (
+                      <p className="text-xs text-neutral-500 mt-1">{item.description}</p>
+                    )}
+                  </div>
+                  <span className="text-primary-600 font-semibold ml-4">¥{item.price}</span>
+                </div>
+              ))}
+            </motion.div>
+          )
+        ))}
+      </AnimatePresence>
+    </div>
+  );
+}
+
 // 餐厅详情抽屉组件
 function RestaurantDrawer({
   restaurant,
@@ -400,7 +524,7 @@ function RestaurantDrawer({
             </div>
 
             {/* 标签 */}
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-2 mb-4">
               {restaurant.tags.map((tag) => (
                 <span key={tag} className="px-3 py-1.5 bg-neutral-100 text-neutral-600 text-xs rounded-lg font-medium">
                   {tag}
@@ -413,7 +537,27 @@ function RestaurantDrawer({
                 <span className="px-3 py-1.5 bg-primary-500 text-white text-xs rounded-lg font-bold">可拼单</span>
               )}
             </div>
+
+            {/* 营业时间和电话 */}
+            <div className="flex items-center gap-4 text-xs text-neutral-500 mb-5">
+              <div className="flex items-center gap-1.5">
+                <Clock size={14} className="text-neutral-400" />
+                <span>{restaurant.businessHours}</span>
+              </div>
+              {restaurant.phone && (
+                <div className="flex items-center gap-1.5">
+                  <Phone size={14} className="text-neutral-400" />
+                  <span>{restaurant.phone}</span>
+                </div>
+              )}
+            </div>
           </div>
+
+          {/* 官方图片画廊 */}
+          <ImageGallery images={restaurant.officialImages} restaurantName={restaurant.name} />
+
+          {/* 菜单 */}
+          <MenuSection menu={restaurant.menu} />
 
           {/* 推荐/避雷按钮 */}
           {!showReviewForm && (

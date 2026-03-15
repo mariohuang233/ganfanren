@@ -1,3 +1,20 @@
+// 菜单项
+export interface MenuItem {
+  id: string;
+  name: string;
+  price: number;
+  description?: string;
+  isPopular?: boolean;
+  isSpicy?: boolean;
+}
+
+// 菜单分类
+export interface MenuCategory {
+  id: string;
+  name: string;
+  items: MenuItem[];
+}
+
 // 餐厅数据
 export interface Restaurant {
   id: string;
@@ -15,9 +32,333 @@ export interface Restaurant {
   description: string;
   icon: string;
   iconBg: string;
+  // 新增字段
+  officialImages: string[]; // 官方图片
+  menu: MenuCategory[]; // 菜单
+  businessHours: string; // 营业时间
+  phone?: string; // 电话
 }
 
-export const restaurants: Restaurant[] = [
+// 生成官方图片
+const generateOfficialImages = (baseImage: string): string[] => {
+  const foodImages = [
+    "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=600",
+    "https://images.unsplash.com/photo-1563245372-f21724e3856d?w=600",
+    "https://images.unsplash.com/photo-1525755662778-989d0524087e?w=600",
+    "https://images.unsplash.com/photo-1555126634-323283e090fa?w=600",
+    "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=600",
+    "https://images.unsplash.com/photo-1557872943-16a5ac26437e?w=600",
+    "https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=600",
+    "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600",
+  ];
+  
+  // 随机选择3张不同的图片
+  const shuffled = [...foodImages].sort(() => 0.5 - Math.random());
+  return [baseImage.replace('w=400', 'w=600'), ...shuffled.slice(0, 2)];
+};
+
+// 生成默认菜单
+const generateDefaultMenu = (type: string): MenuCategory[] => {
+  const menus: Record<string, MenuCategory[]> = {
+    '麻辣烫': [
+      {
+        id: 'cat1',
+        name: '超值套餐',
+        items: [
+          { id: 'm1', name: '穷鬼套餐', price: 15, description: '10串素菜+5串荤菜+主食', isPopular: true },
+          { id: 'm2', name: '豪华套餐', price: 25, description: '15串混搭+饮料+主食', isPopular: true },
+          { id: 'm3', name: '单人畅享', price: 20, description: '自选20串+主食' },
+        ]
+      },
+      {
+        id: 'cat2',
+        name: '荤菜',
+        items: [
+          { id: 'm4', name: '牛肉串', price: 3, isSpicy: true },
+          { id: 'm5', name: '羊肉串', price: 3, isSpicy: true },
+          { id: 'm6', name: '鱼丸', price: 2 },
+          { id: 'm7', name: '虾饺', price: 2.5 },
+        ]
+      },
+      {
+        id: 'cat3',
+        name: '素菜',
+        items: [
+          { id: 'm8', name: '土豆片', price: 1 },
+          { id: 'm9', name: '金针菇', price: 1.5 },
+          { id: 'm10', name: '豆腐皮', price: 1 },
+          { id: 'm11', name: '青菜', price: 1 },
+        ]
+      }
+    ],
+    '拉面': [
+      {
+        id: 'cat1',
+        name: '招牌面食',
+        items: [
+          { id: 'r1', name: '牛肉拉面', price: 12, description: '手工拉面+牛肉片+香菜', isPopular: true },
+          { id: 'r2', name: '羊肉面', price: 15, description: '羊肉片+手工面', isPopular: true },
+          { id: 'r3', name: '刀削面', price: 13, description: '现削面条+牛肉' },
+        ]
+      },
+      {
+        id: 'cat2',
+        name: '小菜',
+        items: [
+          { id: 'r4', name: '凉拌黄瓜', price: 6 },
+          { id: 'r5', name: '拍黄瓜', price: 6 },
+          { id: 'r6', name: '卤蛋', price: 2 },
+        ]
+      }
+    ],
+    '炸鸡': [
+      {
+        id: 'cat1',
+        name: '炸鸡套餐',
+        items: [
+          { id: 'c1', name: '单人套餐', price: 28, description: '炸鸡半只+薯条+可乐', isPopular: true },
+          { id: 'c2', name: '双人套餐', price: 48, description: '整只炸鸡+薯条+2杯可乐', isPopular: true },
+          { id: 'c3', name: '炸鸡桶', price: 68, description: '炸鸡+鸡翅+薯条+3杯可乐' },
+        ]
+      },
+      {
+        id: 'cat2',
+        name: '单点',
+        items: [
+          { id: 'c4', name: '原味炸鸡', price: 25 },
+          { id: 'c5', name: '甜辣炸鸡', price: 28, isSpicy: true },
+          { id: 'c6', name: '蒜香炸鸡', price: 28 },
+          { id: 'c7', name: '薯条', price: 10 },
+        ]
+      }
+    ],
+    '川菜': [
+      {
+        id: 'cat1',
+        name: '招牌菜',
+        items: [
+          { id: 's1', name: '回锅肉', price: 32, description: '肥瘦相间，蒜苗爆香', isPopular: true, isSpicy: true },
+          { id: 's2', name: '宫保鸡丁', price: 28, description: '花生香脆，鸡肉嫩滑', isPopular: true },
+          { id: 's3', name: '麻婆豆腐', price: 18, description: '麻辣鲜香', isSpicy: true },
+        ]
+      },
+      {
+        id: 'cat2',
+        name: '主食',
+        items: [
+          { id: 's4', name: '米饭', price: 2 },
+          { id: 's5', name: '蛋炒饭', price: 12 },
+          { id: 's6', name: '担担面', price: 15, isSpicy: true },
+        ]
+      }
+    ],
+    '日料': [
+      {
+        id: 'cat1',
+        name: '定食',
+        items: [
+          { id: 'j1', name: '咖喱饭套餐', price: 32, description: '浓郁咖喱+炸鸡排+汤', isPopular: true },
+          { id: 'j2', name: '照烧鸡排饭', price: 30, description: '嫩滑鸡排+酱汁', isPopular: true },
+          { id: 'j3', name: '豚骨拉面', price: 35, description: '8小时熬制汤底' },
+        ]
+      },
+      {
+        id: 'cat2',
+        name: '小食',
+        items: [
+          { id: 'j4', name: '章鱼小丸子', price: 15 },
+          { id: 'j5', name: '日式煎饺', price: 18 },
+          { id: 'j6', name: '味增汤', price: 8 },
+        ]
+      }
+    ],
+    '沙县': [
+      {
+        id: 'cat1',
+        name: '经典',
+        items: [
+          { id: 'x1', name: '蒸饺', price: 6, description: '皮薄馅大', isPopular: true },
+          { id: 'x2', name: '拌面', price: 5, description: '花生酱香浓', isPopular: true },
+          { id: 'x3', name: '炖罐', price: 12, description: '营养滋补' },
+        ]
+      },
+      {
+        id: 'cat2',
+        name: '套餐',
+        items: [
+          { id: 'x4', name: 'A套餐', price: 12, description: '拌面+蒸饺+汤' },
+          { id: 'x5', name: 'B套餐', price: 15, description: '炒饭+炖罐' },
+        ]
+      }
+    ],
+    '轻食': [
+      {
+        id: 'cat1',
+        name: '沙拉',
+        items: [
+          { id: 'l1', name: '鸡胸肉沙拉', price: 32, description: '低脂高蛋白', isPopular: true },
+          { id: 'l2', name: '金枪鱼沙拉', price: 35, description: '深海金枪鱼', isPopular: true },
+          { id: 'l3', name: '素食沙拉', price: 28, description: '新鲜蔬菜' },
+        ]
+      },
+      {
+        id: 'cat2',
+        name: '主食',
+        items: [
+          { id: 'l4', name: '藜麦饭', price: 8 },
+          { id: 'l5', name: '全麦三明治', price: 22 },
+          { id: 'l6', name: '蔬菜卷', price: 18 },
+        ]
+      }
+    ],
+    '黄焖鸡': [
+      {
+        id: 'cat1',
+        name: '黄焖系列',
+        items: [
+          { id: 'h1', name: '黄焖鸡小份', price: 18, description: '鸡肉+土豆+青椒', isPopular: true },
+          { id: 'h2', name: '黄焖鸡大份', price: 25, description: '更多鸡肉', isPopular: true },
+          { id: 'h3', name: '黄焖排骨', price: 28, description: '精选排骨' },
+          { id: 'h4', name: '黄焖猪蹄', price: 30, description: '胶原蛋白满满' },
+        ]
+      },
+      {
+        id: 'cat2',
+        name: '加料',
+        items: [
+          { id: 'h5', name: '米饭', price: 2 },
+          { id: 'h6', name: '加鸡肉', price: 8 },
+          { id: 'h7', name: '加蔬菜', price: 5 },
+        ]
+      }
+    ],
+    '小面': [
+      {
+        id: 'cat1',
+        name: '面食',
+        items: [
+          { id: 'v1', name: '豌杂面', price: 14, description: '豌豆软糯+肉酱香', isPopular: true, isSpicy: true },
+          { id: 'v2', name: '重庆小面', price: 12, description: '麻辣鲜香', isPopular: true, isSpicy: true },
+          { id: 'v3', name: '牛肉面', price: 16, description: '大块牛肉' },
+        ]
+      },
+      {
+        id: 'cat2',
+        name: '小菜',
+        items: [
+          { id: 'v4', name: '酸辣粉', price: 12, isSpicy: true },
+          { id: 'v5', name: '凉糕', price: 6 },
+          { id: 'v6', name: '卤蛋', price: 2 },
+        ]
+      }
+    ],
+    '饺子': [
+      {
+        id: 'cat1',
+        name: '水饺',
+        items: [
+          { id: 'd1', name: '酸菜猪肉饺', price: 18, description: '东北特色', isPopular: true },
+          { id: 'd2', name: '韭菜鸡蛋饺', price: 15, description: '经典口味', isPopular: true },
+          { id: 'd3', name: '三鲜饺', price: 20, description: '虾仁+猪肉+韭菜' },
+        ]
+      },
+      {
+        id: 'cat2',
+        name: '煎饺',
+        items: [
+          { id: 'd4', name: '锅贴', price: 16 },
+          { id: 'd5', name: '煎饺', price: 16 },
+        ]
+      }
+    ],
+    '烧腊': [
+      {
+        id: 'cat1',
+        name: '烧腊',
+        items: [
+          { id: 'b1', name: '烧鹅饭', price: 38, description: '皮脆肉嫩', isPopular: true },
+          { id: 'b2', name: '叉烧饭', price: 32, description: '肥瘦相间', isPopular: true },
+          { id: 'b3', name: '烧鸭饭', price: 28, description: '配酸梅酱' },
+          { id: 'b4', name: '双拼饭', price: 42, description: '烧鹅+叉烧' },
+        ]
+      },
+      {
+        id: 'cat2',
+        name: '单点',
+        items: [
+          { id: 'b5', name: '白切鸡', price: 35 },
+          { id: 'b6', name: '卤水拼盘', price: 28 },
+        ]
+      }
+    ],
+    '螺蛳粉': [
+      {
+        id: 'cat1',
+        name: '螺蛳粉',
+        items: [
+          { id: 'p1', name: '原味螺蛳粉', price: 15, description: '经典口味', isPopular: true, isSpicy: true },
+          { id: 'p2', name: '加蛋螺蛳粉', price: 17, description: '配卤蛋', isSpicy: true },
+          { id: 'p3', name: '全家福', price: 22, description: '加腐竹+鸭脚+蛋', isSpicy: true },
+        ]
+      },
+      {
+        id: 'cat2',
+        name: '加料',
+        items: [
+          { id: 'p4', name: '腐竹', price: 3 },
+          { id: 'p5', name: '鸭脚', price: 5 },
+          { id: 'p6', name: '酸笋', price: 2 },
+        ]
+      }
+    ],
+    '披萨': [
+      {
+        id: 'cat1',
+        name: '披萨',
+        items: [
+          { id: 'z1', name: '超级至尊', price: 58, description: '多种肉类+蔬菜', isPopular: true },
+          { id: 'z2', name: '海鲜至尊', price: 62, description: '虾仁+鱿鱼', isPopular: true },
+          { id: 'z3', name: '榴莲披萨', price: 55, description: '浓郁榴莲' },
+          { id: 'z4', name: '水果披萨', price: 48, description: '清新水果' },
+        ]
+      },
+      {
+        id: 'cat2',
+        name: '小食',
+        items: [
+          { id: 'z5', name: '意面', price: 28 },
+          { id: 'z6', name: '鸡翅', price: 22 },
+          { id: 'z7', name: '沙拉', price: 18 },
+        ]
+      }
+    ],
+    '粥': [
+      {
+        id: 'cat1',
+        name: '砂锅粥',
+        items: [
+          { id: 'g1', name: '皮蛋瘦肉粥', price: 12, description: '经典养胃', isPopular: true },
+          { id: 'g2', name: '海鲜粥', price: 18, description: '鲜虾+鱼片' },
+          { id: 'g3', name: '排骨粥', price: 15, description: '营养滋补' },
+        ]
+      },
+      {
+        id: 'cat2',
+        name: '配菜',
+        items: [
+          { id: 'g4', name: '油条', price: 3 },
+          { id: 'g5', name: '咸菜', price: 2 },
+          { id: 'g6', name: '卤蛋', price: 2 },
+        ]
+      }
+    ],
+  };
+  
+  return menus[type] || menus['麻辣烫'];
+};
+
+// 餐厅基础数据
+const restaurantBaseData = [
   {
     id: "1",
     name: "张记麻辣烫",
@@ -33,7 +374,10 @@ export const restaurants: Restaurant[] = [
     image: "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=400",
     description: "老板人超好，给料很足，穷鬼套餐15块吃到撑",
     icon: "🍲",
-    iconBg: "from-red-500 to-orange-500"
+    iconBg: "from-red-500 to-orange-500",
+    menuType: "麻辣烫",
+    businessHours: "10:00-02:00",
+    phone: "138-0000-0001"
   },
   {
     id: "2",
@@ -50,7 +394,10 @@ export const restaurants: Restaurant[] = [
     image: "https://images.unsplash.com/photo-1563245372-f21724e3856d?w=400",
     description: "正宗兰州师傅，拉面劲道，汤头鲜美",
     icon: "🍜",
-    iconBg: "from-amber-500 to-yellow-500"
+    iconBg: "from-amber-500 to-yellow-500",
+    menuType: "拉面",
+    businessHours: "06:00-22:00",
+    phone: "138-0000-0002"
   },
   {
     id: "3",
@@ -67,7 +414,10 @@ export const restaurants: Restaurant[] = [
     image: "https://images.unsplash.com/photo-1569058242253-92a9c755a0ec?w=400",
     description: "甜辣口味不错，但有时候炸得有点老",
     icon: "🍗",
-    iconBg: "from-orange-500 to-red-500"
+    iconBg: "from-orange-500 to-red-500",
+    menuType: "炸鸡",
+    businessHours: "11:00-23:00",
+    phone: "138-0000-0003"
   },
   {
     id: "4",
@@ -84,7 +434,10 @@ export const restaurants: Restaurant[] = [
     image: "https://images.unsplash.com/photo-1525755662778-989d0524087e?w=400",
     description: "回锅肉绝了，米饭随便加，干饭人必去",
     icon: "🥘",
-    iconBg: "from-red-600 to-red-500"
+    iconBg: "from-red-600 to-red-500",
+    menuType: "川菜",
+    businessHours: "10:30-21:30",
+    phone: "138-0000-0004"
   },
   {
     id: "5",
@@ -101,7 +454,10 @@ export const restaurants: Restaurant[] = [
     image: "https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=400",
     description: "环境很安静，适合约会，咖喱味道浓郁",
     icon: "🍛",
-    iconBg: "from-yellow-600 to-amber-500"
+    iconBg: "from-yellow-600 to-amber-500",
+    menuType: "日料",
+    businessHours: "11:00-21:00",
+    phone: "138-0000-0005"
   },
   {
     id: "6",
@@ -118,7 +474,10 @@ export const restaurants: Restaurant[] = [
     image: "https://images.unsplash.com/photo-1552611052-33e04de081de?w=400",
     description: "经典沙县，蒸饺和拌面永远的神",
     icon: "🥟",
-    iconBg: "from-neutral-500 to-neutral-600"
+    iconBg: "from-neutral-500 to-neutral-600",
+    menuType: "沙县",
+    businessHours: "06:30-22:00",
+    phone: "138-0000-0006"
   },
   {
     id: "7",
@@ -135,7 +494,10 @@ export const restaurants: Restaurant[] = [
     image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400",
     description: "减脂期首选，食材新鲜，酱料好吃",
     icon: "🥗",
-    iconBg: "from-green-500 to-emerald-500"
+    iconBg: "from-green-500 to-emerald-500",
+    menuType: "轻食",
+    businessHours: "09:00-20:00",
+    phone: "138-0000-0007"
   },
   {
     id: "8",
@@ -152,7 +514,10 @@ export const restaurants: Restaurant[] = [
     image: "https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=400",
     description: "全国连锁味道，中规中矩不会踩雷",
     icon: "🍚",
-    iconBg: "from-amber-600 to-yellow-600"
+    iconBg: "from-amber-600 to-yellow-600",
+    menuType: "黄焖鸡",
+    businessHours: "10:00-22:00",
+    phone: "138-0000-0008"
   },
   {
     id: "9",
@@ -169,7 +534,10 @@ export const restaurants: Restaurant[] = [
     image: "https://images.unsplash.com/photo-1617622141675-d227c5d6eb91?w=400",
     description: "麻辣鲜香，豌杂面是招牌，花生碎很香",
     icon: "🍜",
-    iconBg: "from-red-500 to-orange-600"
+    iconBg: "from-red-500 to-orange-600",
+    menuType: "小面",
+    businessHours: "07:00-21:00",
+    phone: "138-0000-0009"
   },
   {
     id: "10",
@@ -186,7 +554,10 @@ export const restaurants: Restaurant[] = [
     image: "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?w=400",
     description: "饺子皮薄馅大，酸菜猪肉馅必点，老板东北人很热情",
     icon: "🥟",
-    iconBg: "from-yellow-500 to-amber-500"
+    iconBg: "from-yellow-500 to-amber-500",
+    menuType: "饺子",
+    businessHours: "10:00-22:00",
+    phone: "138-0000-0010"
   },
   {
     id: "11",
@@ -203,7 +574,10 @@ export const restaurants: Restaurant[] = [
     image: "https://images.unsplash.com/photo-1555126634-323283e090fa?w=400",
     description: "烧鹅皮脆肉嫩，叉烧肥瘦相间，配酸梅酱绝了",
     icon: "🍖",
-    iconBg: "from-red-400 to-red-500"
+    iconBg: "from-red-400 to-red-500",
+    menuType: "烧腊",
+    businessHours: "10:30-20:30",
+    phone: "138-0000-0011"
   },
   {
     id: "12",
@@ -220,7 +594,10 @@ export const restaurants: Restaurant[] = [
     image: "https://images.unsplash.com/photo-1594007654729-407eedc4be65?w=400",
     description: "味道正宗但真的很臭，建议打包带走吃，腐竹和酸笋给很多",
     icon: "🍜",
-    iconBg: "from-yellow-600 to-yellow-700"
+    iconBg: "from-yellow-600 to-yellow-700",
+    menuType: "螺蛳粉",
+    businessHours: "09:00-22:00",
+    phone: "138-0000-0012"
   },
   {
     id: "13",
@@ -237,7 +614,10 @@ export const restaurants: Restaurant[] = [
     image: "https://images.unsplash.com/photo-1557872943-16a5ac26437e?w=400",
     description: "豚骨汤底熬了8小时，溏心蛋完美，叉烧入口即化",
     icon: "🍜",
-    iconBg: "from-orange-300 to-yellow-400"
+    iconBg: "from-orange-300 to-yellow-400",
+    menuType: "拉面",
+    businessHours: "11:00-21:30",
+    phone: "138-0000-0013"
   },
   {
     id: "14",
@@ -254,7 +634,10 @@ export const restaurants: Restaurant[] = [
     image: "https://images.unsplash.com/photo-1563245372-f21724e3856d?w=400",
     description: "一个人的火锅，毛肚和鸭血必点，辣度可以选微辣",
     icon: "🍲",
-    iconBg: "from-red-500 to-red-600"
+    iconBg: "from-red-500 to-red-600",
+    menuType: "川菜",
+    businessHours: "10:00-22:00",
+    phone: "138-0000-0014"
   },
   {
     id: "15",
@@ -271,7 +654,10 @@ export const restaurants: Restaurant[] = [
     image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400",
     description: "薄底披萨很正宗，芝士拉丝很长，适合宿舍聚餐",
     icon: "🍕",
-    iconBg: "from-yellow-400 to-orange-400"
+    iconBg: "from-yellow-400 to-orange-400",
+    menuType: "披萨",
+    businessHours: "10:00-22:00",
+    phone: "138-0000-0015"
   },
   {
     id: "16",
@@ -288,9 +674,19 @@ export const restaurants: Restaurant[] = [
     image: "https://images.unsplash.com/photo-1511910849309-0dffb8785146?w=400",
     description: "生病或者胃不舒服时的救星，皮蛋瘦肉粥熬得很稠",
     icon: "🥣",
-    iconBg: "from-neutral-300 to-neutral-400"
+    iconBg: "from-neutral-300 to-neutral-400",
+    menuType: "粥",
+    businessHours: "06:00-21:00",
+    phone: "138-0000-0016"
   }
 ];
+
+// 生成完整的餐厅数据
+export const restaurants: Restaurant[] = restaurantBaseData.map(r => ({
+  ...r,
+  officialImages: generateOfficialImages(r.image),
+  menu: generateDefaultMenu(r.menuType),
+}));
 
 // 评价数据
 export interface Review {
@@ -356,7 +752,7 @@ export let reviews: Review[] = [
   },
   {
     id: "4",
-    userName: "减肥中的猫",
+    userName: "奶茶续命选手",
     userAvatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100",
     school: "北航",
     restaurantName: "GreenFit轻食",
