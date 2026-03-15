@@ -37,6 +37,7 @@ export interface Restaurant {
   menu: MenuCategory[]; // 菜单
   businessHours: string; // 营业时间
   phone?: string; // 电话
+  address: string; // 具体地址
 }
 
 // 生成官方图片
@@ -357,6 +358,26 @@ const generateDefaultMenu = (type: string): MenuCategory[] => {
   return menus[type] || menus['麻辣烫'];
 };
 
+// 大学城地址列表
+const universityAddresses = [
+  "清华大学桃李园食堂B1层",
+  "北京大学畅春园食街3号铺",
+  "北京航空航天大学合一楼南侧",
+  "人民大学东区食堂旁",
+  "北京理工大学新食堂二楼",
+  "北京师范大学学五食堂后街",
+  "北京邮电大学学生公寓区",
+  "北京交通大学学苑公寓楼下",
+  "中国农业大学东区食堂旁",
+  "中央民族大学风味餐厅",
+  "北京外国语大学东校区美食街",
+  "北京语言大学清晏楼三楼",
+  "中国地质大学（北京）学19楼",
+  "北京科技大学鸿博园食堂",
+  "北京化工大学北区食堂",
+  "北京林业大学学二食堂旁"
+];
+
 // 餐厅基础数据
 const restaurantBaseData = [
   {
@@ -377,7 +398,8 @@ const restaurantBaseData = [
     iconBg: "from-red-500 to-orange-500",
     menuType: "麻辣烫",
     businessHours: "10:00-02:00",
-    phone: "138-0000-0001"
+    phone: "138-0000-0001",
+    address: "清华大学桃李园食堂B1层"
   },
   {
     id: "2",
@@ -397,7 +419,8 @@ const restaurantBaseData = [
     iconBg: "from-amber-500 to-yellow-500",
     menuType: "拉面",
     businessHours: "06:00-22:00",
-    phone: "138-0000-0002"
+    phone: "138-0000-0002",
+    address: "北京大学畅春园食街3号铺"
   },
   {
     id: "3",
@@ -417,7 +440,8 @@ const restaurantBaseData = [
     iconBg: "from-orange-500 to-red-500",
     menuType: "炸鸡",
     businessHours: "11:00-23:00",
-    phone: "138-0000-0003"
+    phone: "138-0000-0003",
+    address: "北京航空航天大学合一楼南侧"
   },
   {
     id: "4",
@@ -437,7 +461,8 @@ const restaurantBaseData = [
     iconBg: "from-red-600 to-red-500",
     menuType: "川菜",
     businessHours: "10:30-21:30",
-    phone: "138-0000-0004"
+    phone: "138-0000-0004",
+    address: "人民大学东区食堂旁"
   },
   {
     id: "5",
@@ -457,7 +482,8 @@ const restaurantBaseData = [
     iconBg: "from-yellow-600 to-amber-500",
     menuType: "日料",
     businessHours: "11:00-21:00",
-    phone: "138-0000-0005"
+    phone: "138-0000-0005",
+    address: "北京理工大学新食堂二楼"
   },
   {
     id: "6",
@@ -477,7 +503,8 @@ const restaurantBaseData = [
     iconBg: "from-neutral-500 to-neutral-600",
     menuType: "沙县",
     businessHours: "06:30-22:00",
-    phone: "138-0000-0006"
+    phone: "138-0000-0006",
+    address: "北京师范大学学五食堂后街"
   },
   {
     id: "7",
@@ -497,7 +524,8 @@ const restaurantBaseData = [
     iconBg: "from-green-500 to-emerald-500",
     menuType: "轻食",
     businessHours: "09:00-20:00",
-    phone: "138-0000-0007"
+    phone: "138-0000-0007",
+    address: "北京邮电大学学生公寓区"
   },
   {
     id: "8",
@@ -517,7 +545,8 @@ const restaurantBaseData = [
     iconBg: "from-amber-600 to-yellow-600",
     menuType: "黄焖鸡",
     businessHours: "10:00-22:00",
-    phone: "138-0000-0008"
+    phone: "138-0000-0008",
+    address: "北京交通大学学苑公寓楼下"
   },
   {
     id: "9",
@@ -537,7 +566,8 @@ const restaurantBaseData = [
     iconBg: "from-red-500 to-orange-600",
     menuType: "小面",
     businessHours: "07:00-21:00",
-    phone: "138-0000-0009"
+    phone: "138-0000-0009",
+    address: "中国农业大学东区食堂旁"
   },
   {
     id: "10",
@@ -557,7 +587,8 @@ const restaurantBaseData = [
     iconBg: "from-yellow-500 to-amber-500",
     menuType: "饺子",
     businessHours: "10:00-22:00",
-    phone: "138-0000-0010"
+    phone: "138-0000-0010",
+    address: "中央民族大学风味餐厅"
   },
   {
     id: "11",
@@ -577,7 +608,8 @@ const restaurantBaseData = [
     iconBg: "from-red-400 to-red-500",
     menuType: "烧腊",
     businessHours: "10:30-20:30",
-    phone: "138-0000-0011"
+    phone: "138-0000-0011",
+    address: "北京外国语大学东校区美食街"
   },
   {
     id: "12",
@@ -597,7 +629,8 @@ const restaurantBaseData = [
     iconBg: "from-yellow-600 to-yellow-700",
     menuType: "螺蛳粉",
     businessHours: "09:00-22:00",
-    phone: "138-0000-0012"
+    phone: "138-0000-0012",
+    address: "北京语言大学清晏楼三楼"
   },
   {
     id: "13",
@@ -617,7 +650,8 @@ const restaurantBaseData = [
     iconBg: "from-orange-300 to-yellow-400",
     menuType: "拉面",
     businessHours: "11:00-21:30",
-    phone: "138-0000-0013"
+    phone: "138-0000-0013",
+    address: "中国地质大学（北京）学19楼"
   },
   {
     id: "14",
@@ -637,7 +671,8 @@ const restaurantBaseData = [
     iconBg: "from-red-500 to-red-600",
     menuType: "川菜",
     businessHours: "10:00-22:00",
-    phone: "138-0000-0014"
+    phone: "138-0000-0014",
+    address: "北京科技大学鸿博园食堂"
   },
   {
     id: "15",
@@ -657,7 +692,8 @@ const restaurantBaseData = [
     iconBg: "from-yellow-400 to-orange-400",
     menuType: "披萨",
     businessHours: "10:00-22:00",
-    phone: "138-0000-0015"
+    phone: "138-0000-0015",
+    address: "北京化工大学北区食堂"
   },
   {
     id: "16",
@@ -677,7 +713,8 @@ const restaurantBaseData = [
     iconBg: "from-neutral-300 to-neutral-400",
     menuType: "粥",
     businessHours: "06:00-21:00",
-    phone: "138-0000-0016"
+    phone: "138-0000-0016",
+    address: "北京林业大学学二食堂旁"
   }
 ];
 

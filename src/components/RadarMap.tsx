@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Search, MapPin, Star, Navigation, X, ThumbsUp, ThumbsDown, Sparkles, Camera, Send, List, Clock, Phone, ChevronRight, Flame } from "lucide-react";
+import { Search, MapPin, Star, Navigation, X, ThumbsUp, ThumbsDown, Sparkles, Camera, Send, List, Clock, Phone, ChevronRight, Flame, MapPinned } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { restaurants, filterTags, reviews, Restaurant, MenuCategory } from "@/data/mock";
 import OptimizedRestaurantCard from "./OptimizedRestaurantCard";
@@ -536,6 +536,12 @@ function RestaurantDrawer({
               {restaurant.hasGroup && (
                 <span className="px-3 py-1.5 bg-primary-500 text-white text-xs rounded-lg font-bold">可拼单</span>
               )}
+            </div>
+
+            {/* 地址 */}
+            <div className="flex items-start gap-1.5 text-xs text-neutral-600 mb-3">
+              <MapPinned size={14} className="text-neutral-400 flex-shrink-0 mt-0.5" />
+              <span>{restaurant.address}</span>
             </div>
 
             {/* 营业时间和电话 */}
