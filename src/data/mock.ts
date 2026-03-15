@@ -358,24 +358,24 @@ const generateDefaultMenu = (type: string): MenuCategory[] => {
   return menus[type] || menus['麻辣烫'];
 };
 
-// 大学城地址列表
+// 上海五角场大学城商业街地址列表
 const universityAddresses = [
-  "清华大学桃李园食堂B1层",
-  "北京大学畅春园食街3号铺",
-  "北京航空航天大学合一楼南侧",
-  "人民大学东区食堂旁",
-  "北京理工大学新食堂二楼",
-  "北京师范大学学五食堂后街",
-  "北京邮电大学学生公寓区",
-  "北京交通大学学苑公寓楼下",
-  "中国农业大学东区食堂旁",
-  "中央民族大学风味餐厅",
-  "北京外国语大学东校区美食街",
-  "北京语言大学清晏楼三楼",
-  "中国地质大学（北京）学19楼",
-  "北京科技大学鸿博园食堂",
-  "北京化工大学北区食堂",
-  "北京林业大学学二食堂旁"
+  "淞沪路8号百联又一城购物中心B1层美食街A12",
+  "政通路189号万达广场C座2层205室",
+  "国宾路36号五角场万达广场B1层108号",
+  "翔殷路1099号合生汇L5层美食广场",
+  "淞沪路303号创智天地广场3期B1层",
+  "政民路485号国定路菜市场2楼A03",
+  "国定路333号三号湾广场1层K15",
+  "邯郸路399号财富大酒店B1层",
+  "淞沪路234号创智天地1号楼2层",
+  "政立路775号东方商厦B1层",
+  "国和路777号中原城市广场2期1层",
+  "翔殷路1128号沪东金融大厦3层",
+  "黄兴路2228号上海合生国际广场B2层",
+  "国定东路200号创业者公共实训基地1层",
+  "政通路240号复旦大学科技园大厦B1层",
+  "淞沪路388号创智天地企业中心7号楼"
 ];
 
 // 餐厅基础数据
@@ -399,7 +399,7 @@ const restaurantBaseData = [
     menuType: "麻辣烫",
     businessHours: "10:00-02:00",
     phone: "138-0000-0001",
-    address: "清华大学桃李园食堂B1层"
+    address: "淞沪路8号百联又一城购物中心B1层美食街A12"
   },
   {
     id: "2",
@@ -420,7 +420,7 @@ const restaurantBaseData = [
     menuType: "拉面",
     businessHours: "06:00-22:00",
     phone: "138-0000-0002",
-    address: "北京大学畅春园食街3号铺"
+    address: "政通路189号万达广场C座2层205室"
   },
   {
     id: "3",
@@ -441,7 +441,7 @@ const restaurantBaseData = [
     menuType: "炸鸡",
     businessHours: "11:00-23:00",
     phone: "138-0000-0003",
-    address: "北京航空航天大学合一楼南侧"
+    address: "国宾路36号五角场万达广场B1层108号"
   },
   {
     id: "4",
@@ -462,7 +462,7 @@ const restaurantBaseData = [
     menuType: "川菜",
     businessHours: "10:30-21:30",
     phone: "138-0000-0004",
-    address: "人民大学东区食堂旁"
+    address: "翔殷路1099号合生汇L5层美食广场"
   },
   {
     id: "5",
@@ -483,7 +483,7 @@ const restaurantBaseData = [
     menuType: "日料",
     businessHours: "11:00-21:00",
     phone: "138-0000-0005",
-    address: "北京理工大学新食堂二楼"
+    address: "淞沪路303号创智天地广场3期B1层"
   },
   {
     id: "6",
@@ -504,7 +504,7 @@ const restaurantBaseData = [
     menuType: "沙县",
     businessHours: "06:30-22:00",
     phone: "138-0000-0006",
-    address: "北京师范大学学五食堂后街"
+    address: "政民路485号国定路菜市场2楼A03"
   },
   {
     id: "7",
@@ -525,7 +525,7 @@ const restaurantBaseData = [
     menuType: "轻食",
     businessHours: "09:00-20:00",
     phone: "138-0000-0007",
-    address: "北京邮电大学学生公寓区"
+    address: "国定路333号三号湾广场1层K15"
   },
   {
     id: "8",
@@ -546,7 +546,7 @@ const restaurantBaseData = [
     menuType: "黄焖鸡",
     businessHours: "10:00-22:00",
     phone: "138-0000-0008",
-    address: "北京交通大学学苑公寓楼下"
+    address: "邯郸路399号财富大酒店B1层"
   },
   {
     id: "9",
@@ -567,7 +567,7 @@ const restaurantBaseData = [
     menuType: "小面",
     businessHours: "07:00-21:00",
     phone: "138-0000-0009",
-    address: "中国农业大学东区食堂旁"
+    address: "淞沪路234号创智天地1号楼2层"
   },
   {
     id: "10",
@@ -588,7 +588,7 @@ const restaurantBaseData = [
     menuType: "饺子",
     businessHours: "10:00-22:00",
     phone: "138-0000-0010",
-    address: "中央民族大学风味餐厅"
+    address: "政立路775号东方商厦B1层"
   },
   {
     id: "11",
@@ -609,7 +609,7 @@ const restaurantBaseData = [
     menuType: "烧腊",
     businessHours: "10:30-20:30",
     phone: "138-0000-0011",
-    address: "北京外国语大学东校区美食街"
+    address: "国和路777号中原城市广场2期1层"
   },
   {
     id: "12",
@@ -630,7 +630,7 @@ const restaurantBaseData = [
     menuType: "螺蛳粉",
     businessHours: "09:00-22:00",
     phone: "138-0000-0012",
-    address: "北京语言大学清晏楼三楼"
+    address: "翔殷路1128号沪东金融大厦3层"
   },
   {
     id: "13",
@@ -651,7 +651,7 @@ const restaurantBaseData = [
     menuType: "拉面",
     businessHours: "11:00-21:30",
     phone: "138-0000-0013",
-    address: "中国地质大学（北京）学19楼"
+    address: "黄兴路2228号上海合生国际广场B2层"
   },
   {
     id: "14",
@@ -672,7 +672,7 @@ const restaurantBaseData = [
     menuType: "川菜",
     businessHours: "10:00-22:00",
     phone: "138-0000-0014",
-    address: "北京科技大学鸿博园食堂"
+    address: "国定东路200号创业者公共实训基地1层"
   },
   {
     id: "15",
@@ -693,7 +693,7 @@ const restaurantBaseData = [
     menuType: "披萨",
     businessHours: "10:00-22:00",
     phone: "138-0000-0015",
-    address: "北京化工大学北区食堂"
+    address: "政通路240号复旦大学科技园大厦B1层"
   },
   {
     id: "16",
@@ -714,7 +714,7 @@ const restaurantBaseData = [
     menuType: "粥",
     businessHours: "06:00-21:00",
     phone: "138-0000-0016",
-    address: "北京林业大学学二食堂旁"
+    address: "淞沪路388号创智天地企业中心7号楼"
   }
 ];
 
@@ -746,7 +746,7 @@ export let reviews: Review[] = [
     id: "1",
     userName: "干饭小王",
     userAvatar: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100",
-    school: "清华大学",
+    school: "复旦大学",
     restaurantName: "张记麻辣烫",
     rating: 5,
     content: "太香了！15块钱吃到撑，老板还送了我一瓶可乐，穷鬼狂喜！",
@@ -760,7 +760,7 @@ export let reviews: Review[] = [
     id: "2",
     userName: "食堂在逃人员",
     userAvatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100",
-    school: "北京大学",
+    school: "同济大学",
     restaurantName: "首尔炸鸡啤酒屋",
     rating: 2,
     content: "疯狂踩雷！炸鸡炸得太老了，酱料还齁甜，吃完嗓子疼了一晚上，别来！",
@@ -774,7 +774,7 @@ export let reviews: Review[] = [
     id: "3",
     userName: "碳水教父",
     userAvatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100",
-    school: "人民大学",
+    school: "上海大学",
     restaurantName: "蜀香园川菜馆",
     rating: 5,
     content: "回锅肉yyds！肥瘦相间，蒜苗爆香，米饭随便加，我干了三碗！",
@@ -791,7 +791,7 @@ export let reviews: Review[] = [
     id: "4",
     userName: "奶茶续命选手",
     userAvatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100",
-    school: "北航",
+    school: "上海财经大学",
     restaurantName: "GreenFit轻食",
     rating: 4,
     content: "减脂期救星，鸡胸肉不柴，蔬菜很新鲜，就是价格对学生党不太友好",
@@ -805,7 +805,7 @@ export let reviews: Review[] = [
     id: "5",
     userName: "深夜干饭人",
     userAvatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100",
-    school: "北理工",
+    school: "上海理工大学",
     restaurantName: "兰州正宗牛肉面",
     rating: 4,
     content: "凌晨两点还在营业，救了我这条狗命，汤头很鲜，就是肉有点少",
@@ -819,7 +819,7 @@ export let reviews: Review[] = [
     id: "6",
     userName: "重庆辣妹子",
     userAvatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100",
-    school: "重庆大学",
+    school: "上海外国语大学",
     restaurantName: "重庆小面王",
     rating: 5,
     content: "正宗！跟我在重庆吃的味道一样，麻辣鲜香，豌杂面绝了！",
@@ -833,7 +833,7 @@ export let reviews: Review[] = [
     id: "7",
     userName: "东北大汉",
     userAvatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100",
-    school: "哈工大",
+    school: "上海海洋大学",
     restaurantName: "老边饺子馆",
     rating: 5,
     content: "老乡开的店，饺子皮薄馅大，酸菜猪肉馅有家里那味儿了",
@@ -847,7 +847,7 @@ export let reviews: Review[] = [
     id: "8",
     userName: "广东靓仔",
     userAvatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100",
-    school: "中山大学",
+    school: "上海体育学院",
     restaurantName: "深井烧鹅皇",
     rating: 4,
     content: "烧鹅皮脆肉嫩，叉烧肥瘦相间，就是价格有点贵，偶尔吃一次",
@@ -861,7 +861,7 @@ export let reviews: Review[] = [
     id: "9",
     userName: "螺蛳粉战士",
     userAvatar: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100",
-    school: "广西大学",
+    school: "上海政法学院",
     restaurantName: "柳州螺蛳粉",
     rating: 4,
     content: "虽然臭但是真的好吃！腐竹和酸笋给超多，汤底浓郁",
@@ -875,7 +875,7 @@ export let reviews: Review[] = [
     id: "10",
     userName: "隔壁宿舍小李",
     userAvatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100",
-    school: "清华大学",
+    school: "复旦大学",
     restaurantName: "柳州螺蛳粉",
     rating: 1,
     content: "太臭了！吃完衣服都是那个味道，被室友赶出宿舍了，千万别在宿舍吃",
@@ -903,7 +903,7 @@ export let reviews: Review[] = [
     id: "12",
     userName: "冒菜小公主",
     userAvatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100",
-    school: "四川大学",
+    school: "华东理工大学",
     restaurantName: "成都冒菜馆",
     rating: 4,
     content: "一个人的火锅，毛肚和鸭血必点，微辣刚刚好",
@@ -917,7 +917,7 @@ export let reviews: Review[] = [
     id: "13",
     userName: "披萨控",
     userAvatar: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100",
-    school: "浙江大学",
+    school: "东华大学",
     restaurantName: "必胜客",
     rating: 4,
     content: "宿舍聚餐首选，薄底披萨很正宗，芝士拉丝很长",
@@ -931,7 +931,7 @@ export let reviews: Review[] = [
     id: "14",
     userName: "养生达人",
     userAvatar: "https://images.unsplash.com/photo-1554151228-14d9def656e4?w=100",
-    school: "中医药大学",
+    school: "上海中医药大学",
     restaurantName: "潮汕砂锅粥",
     rating: 5,
     content: "胃炎犯了，喝了三天皮蛋瘦肉粥，胃舒服多了，老板人很好",
@@ -945,7 +945,7 @@ export let reviews: Review[] = [
     id: "15",
     userName: "黄焖鸡信徒",
     userAvatar: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=100",
-    school: "武汉大学",
+    school: "上海师范大学",
     restaurantName: "杨铭宇黄焖鸡",
     rating: 3,
     content: "中规中矩，全国连锁的味道，不会踩雷但也没有惊喜",
@@ -959,7 +959,7 @@ export let reviews: Review[] = [
     id: "16",
     userName: "沙县小王子",
     userAvatar: "https://images.unsplash.com/photo-1507591064344-4c6ce005b128?w=100",
-    school: "厦门大学",
+    school: "上海海事大学",
     restaurantName: "福建沙县小吃",
     rating: 4,
     content: "蒸饺和拌面永远的神，便宜又好吃，出餐还快",
@@ -973,7 +973,7 @@ export let reviews: Review[] = [
     id: "17",
     userName: "健身狂魔",
     userAvatar: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=100",
-    school: "北体",
+    school: "上海体育学院",
     restaurantName: "GreenFit轻食",
     rating: 3,
     content: "食材新鲜但分量太少，男生吃不饱，而且太贵了",
@@ -987,7 +987,7 @@ export let reviews: Review[] = [
     id: "18",
     userName: "约会达人",
     userAvatar: "https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?w=100",
-    school: "复旦大学",
+    school: "上海对外经贸大学",
     restaurantName: "和风食堂",
     rating: 5,
     content: "带女朋友来约会，环境很安静，咖喱味道浓郁，她很喜欢",
@@ -1026,7 +1026,7 @@ export let groupOrders: GroupOrder[] = [
     initiator: {
       name: "爱吃肉的兔子",
       avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100",
-      school: "清华大学"
+      school: "复旦大学"
     },
     restaurantName: "首尔炸鸡啤酒屋",
     time: "今晚18:00",
@@ -1040,7 +1040,7 @@ export let groupOrders: GroupOrder[] = [
     initiator: {
       name: "麻辣烫战士",
       avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100",
-      school: "北京大学"
+      school: "同济大学"
     },
     restaurantName: "张记麻辣烫",
     time: "现在",
@@ -1054,7 +1054,7 @@ export let groupOrders: GroupOrder[] = [
     initiator: {
       name: "健身达人",
       avatar: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100",
-      school: "北航"
+      school: "上海财经大学"
     },
     restaurantName: "GreenFit轻食",
     time: "明天中午12:00",
@@ -1068,7 +1068,7 @@ export let groupOrders: GroupOrder[] = [
     initiator: {
       name: "干饭协会会长",
       avatar: "https://images.unsplash.com/photo-1507591064344-4c6ce005b128?w=100",
-      school: "人民大学"
+      school: "上海大学"
     },
     restaurantName: "蜀香园川菜馆",
     time: "今晚19:30",
@@ -1082,7 +1082,7 @@ export let groupOrders: GroupOrder[] = [
     initiator: {
       name: "披萨控",
       avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100",
-      school: "浙江大学"
+      school: "东华大学"
     },
     restaurantName: "必胜客",
     time: "周六晚上",
@@ -1096,7 +1096,7 @@ export let groupOrders: GroupOrder[] = [
     initiator: {
       name: "东北大汉",
       avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100",
-      school: "哈工大"
+      school: "上海海洋大学"
     },
     restaurantName: "老边饺子馆",
     time: "今晚",
@@ -1110,7 +1110,7 @@ export let groupOrders: GroupOrder[] = [
     initiator: {
       name: "冒菜小公主",
       avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100",
-      school: "四川大学"
+      school: "华东理工大学"
     },
     restaurantName: "成都冒菜馆",
     time: "现在",
@@ -1124,7 +1124,7 @@ export let groupOrders: GroupOrder[] = [
     initiator: {
       name: "日料爱好者",
       avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100",
-      school: "复旦大学"
+      school: "上海对外经贸大学"
     },
     restaurantName: "一兰拉面",
     time: "明天午餐",
@@ -1162,7 +1162,7 @@ export let deliveryHelps: DeliveryHelp[] = [
     initiator: {
       name: "图书馆钉子户",
       avatar: "https://images.unsplash.com/photo-1554151228-14d9def656e4?w=100",
-      school: "清华大学"
+      school: "复旦大学"
     },
     fromLocation: "张记麻辣烫",
     toLocation: "图书馆东门",
@@ -1176,7 +1176,7 @@ export let deliveryHelps: DeliveryHelp[] = [
     initiator: {
       name: "宿舍宅女",
       avatar: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=100",
-      school: "北京大学"
+      school: "同济大学"
     },
     fromLocation: "福建沙县小吃",
     toLocation: "3号楼502",
@@ -1190,7 +1190,7 @@ export let deliveryHelps: DeliveryHelp[] = [
     initiator: {
       name: "实验室打工人",
       avatar: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=100",
-      school: "北理工"
+      school: "上海理工大学"
     },
     fromLocation: "杨铭宇黄焖鸡",
     toLocation: "实验楼A座",
@@ -1204,7 +1204,7 @@ export let deliveryHelps: DeliveryHelp[] = [
     initiator: {
       name: "考研党",
       avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100",
-      school: "人民大学"
+      school: "上海大学"
     },
     fromLocation: "潮汕砂锅粥",
     toLocation: "自习室3楼",
@@ -1218,7 +1218,7 @@ export let deliveryHelps: DeliveryHelp[] = [
     initiator: {
       name: "生病的小明",
       avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100",
-      school: "北航"
+      school: "上海财经大学"
     },
     fromLocation: "潮汕砂锅粥",
     toLocation: "5号楼301",
@@ -1232,7 +1232,7 @@ export let deliveryHelps: DeliveryHelp[] = [
     initiator: {
       name: "熬夜冠军",
       avatar: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100",
-      school: "复旦大学"
+      school: "上海外国语大学"
     },
     fromLocation: "兰州正宗牛肉面",
     toLocation: "宿舍2号楼",
@@ -1246,7 +1246,7 @@ export let deliveryHelps: DeliveryHelp[] = [
     initiator: {
       name: "健身达人",
       avatar: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100",
-      school: "北体"
+      school: "上海体育学院"
     },
     fromLocation: "GreenFit轻食",
     toLocation: "体育馆更衣室",
@@ -1260,7 +1260,7 @@ export let deliveryHelps: DeliveryHelp[] = [
     initiator: {
       name: "写论文的学姐",
       avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100",
-      school: "清华大学"
+      school: "华东政法大学"
     },
     fromLocation: "和风食堂",
     toLocation: "图书馆4楼",
